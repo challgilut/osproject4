@@ -17,10 +17,13 @@
 #error TIMER_FREQ <= 1000 recommended
 #endif
 
+<<<<<<< HEAD
 #define RECALC_FREQ 4
 
 static struct list sleep_list;
 
+=======
+>>>>>>> fc0ec735d77a812acb4985f1c3720dfb3e78d785
 /* Number of timer ticks since OS booted. */
 static int64_t ticks;
 
@@ -41,7 +44,10 @@ timer_init (void)
 {
   pit_configure_channel (0, 2, TIMER_FREQ);
   intr_register_ext (0x20, timer_interrupt, "8254 Timer");
+<<<<<<< HEAD
   list_init(&sleep_list);
+=======
+>>>>>>> fc0ec735d77a812acb4985f1c3720dfb3e78d785
 }
 
 /* Calibrates loops_per_tick, used to implement brief delays. */
@@ -94,6 +100,7 @@ timer_elapsed (int64_t then)
 void
 timer_sleep (int64_t ticks) 
 {
+<<<<<<< HEAD
   ASSERT (intr_get_level () == INTR_ON);
   if (ticks < 1)
     return;
@@ -103,6 +110,13 @@ timer_sleep (int64_t ticks)
   list_insert_ordered(&sleep_list, &thread_current()->elem, (list_less_func *) &cmp_ticks, NULL);
   thread_block();
   intr_set_level(old_level);
+=======
+  int64_t start = timer_ticks ();
+
+  ASSERT (intr_get_level () == INTR_ON);
+  while (timer_elapsed (start) < ticks) 
+    thread_yield ();
+>>>>>>> fc0ec735d77a812acb4985f1c3720dfb3e78d785
 }
 
 /* Sleeps for approximately MS milliseconds.  Interrupts must be
@@ -180,6 +194,7 @@ static void
 timer_interrupt (struct intr_frame *args UNUSED)
 {
   ticks++;
+<<<<<<< HEAD
   thread_tick();
   struct list_elem *e = list_begin(&sleep_list);
   while(e != list_end(&sleep_list))
@@ -192,6 +207,9 @@ timer_interrupt (struct intr_frame *args UNUSED)
     e = list_begin(&sleep_list);
   }
   test_max_priority();
+=======
+  thread_tick ();
+>>>>>>> fc0ec735d77a812acb4985f1c3720dfb3e78d785
 }
 
 /* Returns true if LOOPS iterations waits for more than one timer

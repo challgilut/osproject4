@@ -360,7 +360,11 @@ sub cyl_sectors {
 sub read_loader {
     my ($name) = @_;
     ###--- Change the string in quotes below to your location of loader.bin---### 
+<<<<<<< HEAD
     $name = find_file ("/home/chris/OS/Project2/project2/threads/build/loader.bin") if !defined $name;
+=======
+    $name = find_file ("/home/ramesh/EE461S/SKKU/pintos/userprog/build/loader.bin") if !defined $name;
+>>>>>>> fc0ec735d77a812acb4985f1c3720dfb3e78d785
     die "Cannot find loader\n" if !defined $name;
 
     my ($handle);

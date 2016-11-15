@@ -4,7 +4,10 @@
 #include <debug.h>
 #include <list.h>
 #include <stdint.h>
+<<<<<<< HEAD
 #include <stdbool.h>
+=======
+>>>>>>> fc0ec735d77a812acb4985f1c3720dfb3e78d785
 
 /* States in a thread's life cycle. */
 enum thread_status
@@ -91,6 +94,7 @@ struct thread
     int priority;                       /* Priority. */
     struct list_elem allelem;           /* List element for all threads list. */
 
+<<<<<<< HEAD
     int init_priority;
     struct lock *wait_on_lock;
     struct list donations;
@@ -100,6 +104,8 @@ struct thread
 
     int64_t ticks;
 
+=======
+>>>>>>> fc0ec735d77a812acb4985f1c3720dfb3e78d785
     /* Shared between thread.c and synch.c. */
     struct list_elem elem;              /* List element. */
 
@@ -112,6 +118,7 @@ struct thread
     unsigned magic;                     /* Detects stack overflow. */
   };
 
+<<<<<<< HEAD
 bool cmp_priority (const struct list_elem *a, const struct list_elem *b, void *aux UNUSED);
 bool cmp_ticks (const struct list_elem *a, const struct list_elem *b, void *aux UNUSED);
 void test_max_priority (void);
@@ -124,6 +131,8 @@ void donate_priority (void);
 void remove_with_lock (struct lock *lock);
 void refresh_priority (void);
 
+=======
+>>>>>>> fc0ec735d77a812acb4985f1c3720dfb3e78d785
 /* If false (default), use round-robin scheduler.
    If true, use multi-level feedback queue scheduler.
    Controlled by kernel command-line option "-o mlfqs". */

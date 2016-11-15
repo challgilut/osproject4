@@ -257,7 +257,11 @@ sub find_disks {
     # Find kernel, if we don't already have one.
     if (!exists $parts{KERNEL}) {
 	###--- Change the string in quotes below to your location of kernel.bin ---### 
+<<<<<<< HEAD
 	my $name =  "/home/chris/OS/Project2/project2/threads/build/kernel.bin"; #find_file ('kernel.bin');
+=======
+	my $name =  "/home/ramesh/EE461S/SKKU/pintos/userprog/build/kernel.bin"; #find_file ('kernel.bin');
+>>>>>>> fc0ec735d77a812acb4985f1c3720dfb3e78d785
 	die "Cannot find kernel\n" if !defined $name;
 	do_set_part ('KERNEL', 'file', $name);
     }
@@ -621,7 +625,11 @@ sub run_qemu {
       if $vga eq 'terminal';
     print "warning: qemu doesn't support jitter\n"
       if defined $jitter;
+<<<<<<< HEAD
     my (@cmd) = ('qemu-system-i386');
+=======
+    my (@cmd) = ('qemu');
+>>>>>>> fc0ec735d77a812acb4985f1c3720dfb3e78d785
     push (@cmd, '-device', 'isa-debug-exit');
     push (@cmd, '-hda', $disks[0]) if defined $disks[0];
     push (@cmd, '-hdb', $disks[1]) if defined $disks[1];
